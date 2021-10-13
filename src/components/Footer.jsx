@@ -14,7 +14,7 @@ const Footer = (props) => {
         <p style={{ fontWeight: 'bold', textAlign: 'center', margin: '0' }}>
             ©{new Date().getFullYear()}. ALL RIGHTS RESERVED. | Design by
             <a style={{ color: '#d30000', textDecoration: 'none', marginLeft: '5px' }} href="https://www.facebook.com/DoHungAnh27092000/">
-                Đỗ Hùng Anh
+                Đỗ Huyền Lương
             </a>
         </p>
     </div>

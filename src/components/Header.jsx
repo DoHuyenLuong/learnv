@@ -26,7 +26,7 @@ const Header = (props) => {
         <Container fluid>
             <Navbar.Brand className="fw-bold">
                 <NavLink to={ROUTER_PATH.HOME}>
-                    <i className="fas fa-book-reader" /> Learn EV
+                    <i className="fas fa-book-reader" /> Learn V
                 </NavLink>
             </Navbar.Brand>
 

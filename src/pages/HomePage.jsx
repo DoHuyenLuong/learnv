@@ -28,7 +28,7 @@ const HomePage = (props) => {
                 <div className="container-xxl py-sm-5 py-3">
                     <div className="row">
                         <div className="col-sm-7">
-                            <h1 className="fw-bold">Learn it. Own it.<br/>LearnEV.</h1>
+                            <h1 className="fw-bold">Learn it. Own it.<br/>LearnV.</h1>
                             <p className="m-0">Steady vocabulary, step by step.</p>
                         </div>
                         <div className="col-sm-5 d-sm-flex justify-content-sm-end align-items-sm-end">
