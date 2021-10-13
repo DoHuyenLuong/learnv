@@ -1,4 +1,4 @@
-import firebase, { auth, userDB, studySetDB, rulesDB } from '../config/firebase'
+import firebase, { auth, userDB, studySetDB, rulesDB, paidDB } from '../config/firebase'
 import { Utils } from './index.js'
 
 const Firebase = {
@@ -8,7 +8,10 @@ const Firebase = {
             const res = await auth.signInWithPopup(provider)
             const user = Utils.filterUserObject({ ...res.user, ...res.additionalUserInfo, ...res.additionalUserInfo.profile})
             userDB.child(user?.uid).set(user)   
-            if(user?.isNewUser) rulesDB.child(user?.uid).set({user: true}) 
+            if(user?.isNewUser) {
+                rulesDB.child(user?.uid).set({user: true}) 
+                paidDB.child(user?.uid).set({paid: false})  
+            }
             return true         
         }
         catch (error) {
@@ -60,6 +63,7 @@ const Firebase = {
         try {
             studySetDB.child(idUser).remove()
             rulesDB.child(idUser).set({user: true}) 
+            paidDB.child(idUser).set({paid: false})
             return true
         }
         catch (error) {
@@ -67,14 +71,20 @@ const Firebase = {
         }
     },
 
-    updateRule: (idUser, rule) => {
+    updateRulePaid: (idUser, {rule, paid}) => {
         try {
-            if(rule === 'Admin')
-                rulesDB.child(idUser).set({admin: true}) 
-            else if(rule === 'Collaborator')
-                rulesDB.child(idUser).set({collaborator: true}) 
-            else if(rule === 'User')
-                rulesDB.child(idUser).set({user: true}) 
+            if(rule)
+                if(rule === 'Admin')
+                    rulesDB.child(idUser).set({admin: true}) 
+                else if(rule === 'Collaborator')
+                    rulesDB.child(idUser).set({collaborator: true}) 
+                else if(rule === 'User')
+                    rulesDB.child(idUser).set({user: true}) 
+            if(paid)
+                if(paid === 'True')
+                    paidDB.child(idUser).set({paid: true}) 
+                else if(paid === 'False')
+                    paidDB.child(idUser).set({paid: false})
             return true
         }
         catch (error) {

@@ -4,20 +4,22 @@ import { Card, Badge, OverlayTrigger, Tooltip, Offcanvas, Form, Button } from 'r
 import { useState } from "react"
 import { useList } from 'react-firebase-hooks/database'
 import { Utils, Firebase, Notify } from '../utils'
-import { auth, userDB, rulesDB } from '../config/firebase'
+import { auth, userDB, rulesDB, paidDB } from '../config/firebase'
 
 const UserManagementPage = (props) => {
 
     const [showModel, setShowModel] = useState({ show: false })
     const [search, setSearch] = useState('')
     const [showVEUser, setShowVEUser] = useState({ show: false })
-    const [update, setUpdate] = useState('')
+    const [update, setUpdate] = useState({})
 
+    const [paidDatasnapshot] = useList(paidDB)
     const [rulesDataSnapshot] = useList(rulesDB)
     const [userDataSnapshot] = useList(userDB)
 
+    const paid = Utils.convertDataSnapshotToObject(paidDatasnapshot)
     const rules = Utils.convertDataSnapshotToObject(rulesDataSnapshot)
-    const userList = Utils.convertDataSnapshotToArray(userDataSnapshot).map(user => ({ ...user, ...rules[user?.uid] }))
+    const userList = Utils.convertDataSnapshotToArray(userDataSnapshot).map(user => ({ ...user, ...rules[user?.uid], ...paid[user?.uid]}))
 
     const users = search
         ? userList.filter(item =>
@@ -35,7 +37,7 @@ const UserManagementPage = (props) => {
     }
 
     const handleUpdate = () => {
-        const res = Firebase.updateRule(showVEUser.uid, update)
+        const res = Firebase.updateRulePaid(showVEUser.uid, update)
         if (res) Notify.success('Update successful!')
         else Notify.error('Error, try again!')  
         setShowVEUser({ show: false })
@@ -86,7 +88,10 @@ const UserManagementPage = (props) => {
                                             <Badge bg="primary" 
                                                 onClick={() => {
                                                     setShowVEUser({ ...user, show: true, type: 'update' })
-                                                    setUpdate(user?.admin ? 'Admin' : user?.collaborator ? 'Collaborator' : 'User')
+                                                    setUpdate({
+                                                        rule: user?.admin ? (user?.admin ? 'Admin' : user?.collaborator ? 'Collaborator' : 'User') : '',
+                                                        paid: user?.paid
+                                                    })
                                                 }}>
                                                 <i className="fas fa-edit fs-6" />
                                             </Badge>
@@ -102,7 +107,21 @@ const UserManagementPage = (props) => {
                                             </Badge>
                                         </OverlayTrigger>
                                     </Card.Footer>}
-
+                                    
+                                    {myRules?.collaborator && <Card.Footer className="d-flex justify-content-between">
+                                        <OverlayTrigger placement="bottom" overlay={<Tooltip>Edit</Tooltip>}>
+                                            <Badge bg="primary" className="w-100" 
+                                                onClick={() => {
+                                                    setShowVEUser({ ...user, show: true, type: 'update' })
+                                                    setUpdate({
+                                                        rule: user?.admin ? (user?.admin ? 'Admin' : user?.collaborator ? 'Collaborator' : 'User') : '',
+                                                        paid: user?.paid
+                                                    })
+                                                }}>
+                                                <i className="fas fa-edit fs-6" />
+                                            </Badge>
+                                        </OverlayTrigger>
+                                    </Card.Footer>}
                                 </Card>
                             </div>)
                         }
@@ -149,10 +168,23 @@ const UserManagementPage = (props) => {
                                     <td>{showVEUser?.email}</td>
                                 </tr>
                                 <tr className="fw-bold">
+                                    <td>Paid</td>
+                                    <td>
+                                        {/* {Utils.capitalizeFirstLetter(showVEUser?.paid.toString())} */}
+                                        {showVEUser?.type === 'update' && (myRules?.admin || myRules?.collaborator)
+                                            ? <Form.Select style={{cursor: 'pointer'}} onChange={e => setUpdate({...update, paid: e.target.value})} size="sm" defaultValue={Utils.capitalizeFirstLetter(showVEUser?.paid.toString())}>
+                                                <option value="True">True</option>
+                                                <option value="False">False</option>
+                                            </Form.Select>
+                                            : Utils.capitalizeFirstLetter(showVEUser?.paid.toString())
+                                        }
+                                    </td>
+                                </tr>
+                                <tr className="fw-bold">
                                     <td>Position</td>
                                     <td>
                                         {showVEUser?.type === 'update' && myRules?.admin
-                                            ? <Form.Select style={{cursor: 'pointer'}} onChange={e => setUpdate(e.target.value)} size="sm" defaultValue={showVEUser?.admin ? 'Admin' : showVEUser?.collaborator ? 'Collaborator' : 'User'}>
+                                            ? <Form.Select style={{cursor: 'pointer'}} onChange={e => setUpdate({...update, rule: e.target.value})} size="sm" defaultValue={showVEUser?.admin ? 'Admin' : showVEUser?.collaborator ? 'Collaborator' : 'User'}>
                                                 <option value="Admin">Admin</option>
                                                 <option value="Collaborator">Collaborator</option>
                                                 <option value="User">User</option>

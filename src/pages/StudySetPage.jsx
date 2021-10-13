@@ -4,11 +4,15 @@ import { Button } from 'react-bootstrap'
 import { ROUTER_PATH } from '../constants'
 import { NavLink } from "react-router-dom"
 import { useList } from 'react-firebase-hooks/database'
-import { auth, studySetDB } from '../config/firebase'
+import { auth, studySetDB, paidDB } from '../config/firebase'
 import { Utils } from '../utils'
 import { useState } from "react"
+import RequirePage from './RequirePage'
 
 const StudySetPage = (props) => {
+
+    const [ paidDatasnapshot, loadingPaid ] = useList(auth.currentUser ? paidDB.child(auth.currentUser?.uid) : '')
+    const myPaid = Utils.convertDataSnapshotToObject(paidDatasnapshot)
 
     const [ studySetDataSnapshot ] = useList(
         auth.currentUser ? 
@@ -26,7 +30,9 @@ const StudySetPage = (props) => {
     )
     : Utils.convertDataSnapshotToArray(studySetDataSnapshot)
 
-    return  <>
+    return loadingPaid ? <></>
+    : !myPaid?.paid ? <RequirePage title="You need to pay to use this service. Message the page for support."/>
+    : <>
         <div className="study-set-page-container">
 
             {/* Phần các chức năng bên trên */}

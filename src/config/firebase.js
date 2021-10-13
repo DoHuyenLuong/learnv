@@ -20,5 +20,6 @@ export const realtimeDB = firebase.database() // realtime database
 export const userDB = realtimeDB.ref('users')
 export const studySetDB = realtimeDB.ref('studysets')
 export const rulesDB = realtimeDB.ref('rules')
+export const paidDB = realtimeDB.ref('paid')
 
 export default firebase
