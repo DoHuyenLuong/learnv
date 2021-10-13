@@ -4,14 +4,13 @@ import 'firebase/database'
 
 // Khởi tạo kết nối tới project trên firebase console
 firebase.initializeApp({
-    apiKey: "AIzaSyB4ddjYSiGZZqqKpNxJg0MfpwdNzB4rU10",
-    authDomain: "learn-english-vocabulary-f4bfe.firebaseapp.com",
-    databaseURL: "https://learn-english-vocabulary-f4bfe-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "learn-english-vocabulary-f4bfe",
-    storageBucket: "learn-english-vocabulary-f4bfe.appspot.com",
-    messagingSenderId: "861953354086",
-    appId: "1:861953354086:web:7b9b45aa20adeb187c00a7",
-    measurementId: "G-47XDYW4SYY"
+    apiKey: "AIzaSyDv3LTpEc4ZZijOvc-VJ26h59CpZ16LlGc",
+    authDomain: "learnev-75b6c.firebaseapp.com",
+    projectId: "learnev-75b6c",
+    storageBucket: "learnev-75b6c.appspot.com",
+    messagingSenderId: "235967520381",
+    appId: "1:235967520381:web:055130476884fcb6f99b14",
+    measurementId: "G-81VB7N8CK1"
 })
 
 export const auth = firebase.auth()
