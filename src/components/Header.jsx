@@ -110,7 +110,7 @@ const Header = (props) => {
                                     />
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item><SignOut /></NavDropdown.Item>
+                                <NavDropdown.Item href="#"><SignOut /></NavDropdown.Item>
                             </NavDropdown>
                     }
                 </Nav>
