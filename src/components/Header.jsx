@@ -106,7 +106,6 @@ const Header = (props) => {
                         : _.isEmpty(user) ?
                             <Nav className="my-2 my-sm-0">
                                 <Nav.Link 
-                                    style={{cursor: 'pointer'}}
                                     as="span"
                                     active="active"
                                     href="#"
