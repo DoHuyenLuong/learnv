@@ -22,7 +22,7 @@ const Header = (props) => {
     const [operatorDatasnapshot, loadingOperator] = useList(user?.uid ? rulesDB.child(user?.uid) : '')
     const position = Utils.convertDataSnapshotToObject(operatorDatasnapshot)
 
-    return <Navbar expand="sm" variant="dark" fixed="top" className="header-container">
+    return <Navbar collapseOnSelect expand="sm" variant="dark" fixed="top" className="header-container">
         <Container fluid>
             <Navbar.Brand className="fw-bold">
                 <NavLink to={ROUTER_PATH.HOME}>
@@ -62,12 +62,13 @@ const Header = (props) => {
                         : !_.isEmpty(operatorDatasnapshot) && (position?.admin || position?.collaborator) && 
 
                         <NavDropdown title="Dashboard" className="dashboard-dropdown" active="active">
-                            <NavDropdown.Item as="span" className="fw-bold">
+                            <NavDropdown.Item as="span" href="#" className="fw-bold">
                                 <NavLink to={ROUTER_PATH.DASHBOARD_USERS}>
                                     <i className="fas fa-user"/> Users
                                 </NavLink>
                             </NavDropdown.Item>
-                            <NavDropdown.Item as="span" className="fw-bold">
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item as="span" href="#" className="fw-bold">
                                 <NavLink to={ROUTER_PATH.DASHBOARD_STUDYSET}>
                                     <i className="fas fa-book-open"/> Study sets
                                 </NavLink>
