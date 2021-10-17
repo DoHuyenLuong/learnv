@@ -35,7 +35,7 @@ const AboutPage = (props) => {
             <div className="row">
                 {
                     members?.map((member, index) =>
-                        <div className="col-sm-6 col-md-4 mt-3">
+                        <div className="col-sm-6 col-md-4 mt-3" key={member?.id}>
                             <Card className="h-100">
                                 <Card.Img variant="top" src={member.avtUrl} />
                                 <Card.Body>
