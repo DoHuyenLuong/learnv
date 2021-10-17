@@ -9,6 +9,7 @@ import TestStudySetPage from './TestStudySetPage'
 import UserManagementPage from './UserManagementPage'
 import StudysetManagementPage from './StudysetManagementPage'
 import AboutPage from './AboutPage'
+import BookStore from './BookStore'
 
 export {
     HomePage,
@@ -22,4 +23,5 @@ export {
     UserManagementPage,
     StudysetManagementPage,
     AboutPage,
+    BookStore,
 }

@@ -18,7 +18,7 @@ const members = [
 
 const AboutPage = (props) => {
     return <>
-        <div className="container-xl mt-5">
+        <div className="container-xl mt-5" style={{textAlign: 'justify'}}>
             <h3 className="mt-5 mb-3 border-bottom border-danger d-inline-block border-4 lh-base">About app</h3>
             <p>Bạn đam mê ngoại ngữ, bạn muốn trau dồi vốn từ vựng của bản thân nhưng bạn lại
                 chưa biết cách làm thế nào để nhớ được nhiều từ vựng cũng như chưa chưa tìm được

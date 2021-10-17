@@ -75,6 +75,19 @@ const Header = (props) => {
                         }
                     </Nav.Link>
 
+                    <Nav.Link
+                        style={{cursor: 'pointer'}}
+                        as="span"
+                        href="#"
+                        active="active"
+                        onClick={() => history.push(ROUTER_PATH.BOOK_STORE)}
+                    >
+                        {pathname === ROUTER_PATH.BOOK_STORE
+                            ? <Badge pill bg="primary">Book store</Badge>
+                            : 'Book store'
+                        }
+                    </Nav.Link>
+
                     {loadingOperator ?
                         <Placeholder as={Nav.Link} animation="glow">
                             <Placeholder xs={6} style={{ width: '100px' }} />

@@ -10,6 +10,7 @@ import {
     UserManagementPage,
     StudysetManagementPage,
     AboutPage,
+    BookStore
 } from '../pages'
 import { ROUTER_PATH } from '../constants'
 
@@ -70,6 +71,12 @@ const routes = {
             path: `${ROUTER_PATH.ABOUT}`,
             exact: true,
             main: () => <AboutPage/>
+        }, 
+
+        {
+            path: `${ROUTER_PATH.BOOK_STORE}`,
+            exact: true,
+            main: () => <BookStore/>
         }, 
 
         {

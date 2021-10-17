@@ -13,6 +13,7 @@ const ROUTER_PATH = {
     STUDY_SET_VIEW: '/studyset/view',
     STUDY_SET_TEST: '/studyset/test',
     ABOUT: '/about',
+    BOOK_STORE: '/bookstore',
     PAGE_NOT_FOUND: '',
 }
 
