@@ -179,9 +179,9 @@ const BookStore = (props) => {
 
                 {
                     
-                    books?.map((book, index) => <a href={book.url} target="_blank" rel="noreferrer" className="col-sm-6 col-md-4 mt-3 text-body" key={index}>
+                    books?.map((book, index) => <a href={book.url} target="_blank" rel="noreferrer" className="col-sm-6 col-md-4 col-lg-3 mt-3 text-body" key={index}>
                         <Card className="h-100 book-item-container">
-                            <Card.Img variant="top" src={book.image} />
+                            <Card.Img variant="top" src={book.image} style={{objectFit: 'scale-down', height: '300px'}}/>
                             <Card.Body>
                                 <Card.Title className="title">{book.title}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">
