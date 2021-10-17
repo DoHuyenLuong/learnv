@@ -6,7 +6,7 @@ const Footer = (props) => {
 
     return <div className={`footer-container ${className}`}>
         <div className="wrap-icon">
-            <a href="https://www.facebook.com/luong.huyen.9822"><i className="fab fa-facebook h3"></i></a>
+            <a href="https://www.facebook.com/Learn-Vocabulary-109966034797404"><i className="fab fa-facebook h3"></i></a>
             <a href="https://github.com/DoHuyenLuong"><i className="fab fa-github ms-4 text-dark h3"></i></a>
             <a href="https://www.youtube.com/channel/UCuZUp0A9aLrfHSPr3eg05Ow"><i className="fab fa-youtube ms-4 text-danger h3"></i></a>
             <a href="mailto:huyenluong80832000@gmail.com"><i className="far fa-envelope ms-4 text-danger h3"></i></a>
