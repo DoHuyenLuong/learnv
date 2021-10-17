@@ -9,6 +9,7 @@ import {
     TestStudySetPage,
     UserManagementPage,
     StudysetManagementPage,
+    AboutPage,
 } from '../pages'
 import { ROUTER_PATH } from '../constants'
 
@@ -63,6 +64,12 @@ const routes = {
             path: `${ROUTER_PATH.STUDY_SET_TEST}/:idAuthor/:idStudyset`,
             exact: true,
             main: () => <TestStudySetPage/>
+        }, 
+
+        {
+            path: `${ROUTER_PATH.ABOUT}`,
+            exact: true,
+            main: () => <AboutPage/>
         }, 
 
         {

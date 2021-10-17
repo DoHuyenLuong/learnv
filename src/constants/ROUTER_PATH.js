@@ -12,6 +12,7 @@ const ROUTER_PATH = {
     HOME: '/',
     STUDY_SET_VIEW: '/studyset/view',
     STUDY_SET_TEST: '/studyset/test',
+    ABOUT: '/about',
     PAGE_NOT_FOUND: '',
 }
 
