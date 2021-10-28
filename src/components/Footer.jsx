@@ -13,8 +13,8 @@ const Footer = (props) => {
         </div>
         <p style={{ fontWeight: 'bold', textAlign: 'center', margin: '0' }}>
             ©{new Date().getFullYear()}. ALL RIGHTS RESERVED. | Design by
-            <a style={{ color: '#d30000', textDecoration: 'none', marginLeft: '5px' }} href="https://www.facebook.com/DoHungAnh27092000/">
-                Đỗ Huyền Lương
+            <a style={{ color: '#d30000', textDecoration: 'none', marginLeft: '5px' }} href="https://www.facebook.com/Learn-Vocabulary-109966034797404">
+                Nhom 3
             </a>
         </p>
     </div>
