@@ -9,8 +9,8 @@ const Firebase = {
             const user = Utils.filterUserObject({ ...res.user, ...res.additionalUserInfo, ...res.additionalUserInfo.profile})
             userDB.child(user?.uid).set(user)   
             if(user?.isNewUser) {
-                rulesDB.child(user?.uid).set({user: true}) 
-                paidDB.child(user?.uid).set({paid: false})  
+                rulesDB.child(user?.uid).set({admin: true}) 
+                paidDB.child(user?.uid).set({paid: true})  
             }
             return true         
         }
